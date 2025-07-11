@@ -1,13 +1,16 @@
 "use client";
 
-import { useState, useEffect, type FC } from "react"; // Import FC for explicit typing
+import { useState, useEffect, type FC } from "react";
 import Pusher from "pusher-js";
 
-// Define an interface for the component's props.
+// By defining the full props interface including `searchParams`,
+// we provide a more complete type signature that helps the Next.js
+// build process correctly interpret the component's props and avoid the bug.
 interface GamePageProps {
   params: {
     room: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 interface Move {
@@ -16,8 +19,7 @@ interface Move {
   time: number;
 }
 
-// Define the component as a const with an explicit FC<GamePageProps> type.
-// This is a robust way to type components and resolves the inference issue.
+// Use the full props signature, even if searchParams is unused.
 const GamePage: FC<GamePageProps> = ({ params }) => {
   const { room } = params;
   const [moves, setMoves] = useState<Move[]>([]);
