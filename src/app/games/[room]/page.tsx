@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FC } from "react"; // Import FC for explicit typing
 import Pusher from "pusher-js";
 
-// Define an interface for the component's props for better type safety and clarity.
+// Define an interface for the component's props.
 interface GamePageProps {
   params: {
     room: string;
@@ -16,13 +16,13 @@ interface Move {
   time: number;
 }
 
-// Use the new props interface.
-export default function GamePage({ params }: GamePageProps) {
+// Define the component as a const with an explicit FC<GamePageProps> type.
+// This is a robust way to type components and resolves the inference issue.
+const GamePage: FC<GamePageProps> = ({ params }) => {
   const { room } = params;
   const [moves, setMoves] = useState<Move[]>([]);
 
   useEffect(() => {
-    // Ensure Pusher runs only on the client side and environment variables are present.
     if (!process.env.NEXT_PUBLIC_PUSHER_KEY || !process.env.NEXT_PUBLIC_PUSHER_CLUSTER) {
       console.error("Pusher environment variables are not set.");
       return;
@@ -57,7 +57,6 @@ export default function GamePage({ params }: GamePageProps) {
   };
 
   return (
-    // Replaced CSS module classes with direct Tailwind utility classes.
     <div className="max-w-lg mx-auto my-8 p-4 border rounded-lg bg-white dark:bg-black text-foreground">
       <h1 className="text-2xl font-bold mb-4">Room: {room}</h1>
       <ul className="list-none p-2 mb-4 max-h-40 overflow-y-auto border rounded bg-white dark:bg-gray-900">
@@ -79,4 +78,6 @@ export default function GamePage({ params }: GamePageProps) {
       </button>
     </div>
   );
-}
+};
+
+export default GamePage;
