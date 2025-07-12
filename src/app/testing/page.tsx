@@ -7,7 +7,7 @@ import SendButton from './SendButton';
 
 export default function TestingPage() {
     
-const [message, setMessage] = useState('');
+//const [message, setMessage] = useState('');
 
 
 // console.log({
