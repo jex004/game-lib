@@ -11,7 +11,7 @@ export default function PusherClient(/*{ onMessage }: { onMessage: (msg: string)
 
     const channel = pusher.subscribe('my-channel');
 
-    channel.bind('my-event', (data) => {
+    channel.bind('my-event', (data: any) => {
     //   onMessage(data.message);
     console.log(data.message);
     });
