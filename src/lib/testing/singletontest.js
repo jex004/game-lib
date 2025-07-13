@@ -24,7 +24,8 @@ class Game {
     return this.state;
   }
 }
-
+const createdAt = new Date().toISOString();
+console.log("Game singleton created at:", createdAt);
 // Singleton game instance
 const game = new Game();
 export default game;
