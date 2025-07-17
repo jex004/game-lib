@@ -10,9 +10,13 @@ export async function POST(req: Request) {
 
   const game = {
     name,
-    players: [],
+    players: {},
     teamCount: 2,
-    teams:[{name:"glad",players:[]},{name:"mad",players:[]}],
+    teams:{glad:{name:"glad",players:[]},mad:{name:"mad",players:[]}},
+    turnOrder:[],
+    currentTurn:0,
+    shuffledDeck:[],
+    currentDeckCard:0,
     points:[0,0],
     cardHistory:[],
     state: initialState,
@@ -22,5 +26,5 @@ export async function POST(req: Request) {
 
   const result = await games.insertOne(game);
 
-  return Response.json({ gameId: result.insertedId });
+  return Response.json({ gameId: result.insertedId, game });
 }
