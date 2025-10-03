@@ -2,7 +2,7 @@
 import { pusher } from '@/lib/pusher';
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request, {params}: { params: { id: string } }) {
+export async function POST(req: Request, {params}: { params: Promise<{ id: string }> }) {
   const {id:gameId} = await params;
   const { message } = await req.json();
 
