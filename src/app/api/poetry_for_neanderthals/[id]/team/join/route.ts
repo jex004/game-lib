@@ -1,8 +1,8 @@
 import { ObjectId } from 'mongodb';
 import clientPromise from '@/lib/mongodb';
 
-export async function POST(req: Request, context: { params: { id: string } }) {
-  const {id:gameId} = await context.params;
+export async function POST(req: Request, {params}: { params: Promise<{ id: string }> }) {
+  const {id:gameId} = await params;
   const { playerNick, team } = await req.json();
 
   const client = await clientPromise;
