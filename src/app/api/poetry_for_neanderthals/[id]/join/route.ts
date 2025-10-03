@@ -16,7 +16,7 @@ export async function POST(req: Request, context: { params: { id: string } }) {
     },
     { returnDocument: 'after' }
   );
-  
+  //asdf
 
   return Response.json({ updatedGame: result });
 }
