@@ -29,8 +29,6 @@ export async function POST(req: Request, context: { params: { id: string } }) {
         currentTurn:0,
         cardHistory:[],
         points:Array(game!.teamCount).fill(0),
-        
-
      };
   
 
